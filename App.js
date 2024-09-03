@@ -7,7 +7,6 @@ import TelaCercas from './TelaCercas';
 import TelaCadastro from './TelaCadastro';
 import TelaContatos from './TelaContatos';
 
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {

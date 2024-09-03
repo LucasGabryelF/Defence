@@ -1,7 +1,8 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import MapView from "./map";
 import { LinearGradient } from 'expo-linear-gradient';
+import { StatusBar } from 'expo-status-bar';
 
 import mapaImage from './assets/mapa.png';
 import carImage from './assets/carro.png';
@@ -20,12 +21,25 @@ export default function HomeScreen({ navigation }) {
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TelaCercas')}>
             <Text style={styles.buttonText}>Cercas</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Teste')}>
+            <Text style={styles.buttonText}>Teste</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
-      <Image source={mapaImage} style={styles.mapImage} />
+      <View style={styles.container}>
+        <MapView style={styles.map} 
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      </View>
 
-      <View style={styles.infoRow}>
+      {/* <View style={styles.infoRow}>
         <View style={styles.infoContainer}>
           <LinearGradient
             colors={['rgba(0, 255, 0, 0.5)', 'transparent']}
@@ -70,7 +84,7 @@ export default function HomeScreen({ navigation }) {
           </View>
           <Text style={styles.carPlate}>FJ09923</Text>
         </View>
-      </View>
+      </View> */}
       <StatusBar style="auto" />
     </View>
   );
@@ -80,6 +94,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1c1b22',
+  },
+  map: {
+    width: '100%',
+    height: '100%',
   },
   header: {
     flexDirection: 'row',
