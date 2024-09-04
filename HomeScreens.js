@@ -21,15 +21,13 @@ export default function HomeScreen({ navigation }) {
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('TelaCercas')}>
             <Text style={styles.buttonText}>Cercas</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Teste')}>
-            <Text style={styles.buttonText}>Teste</Text>
-          </TouchableOpacity>
         </View>
       </View>
 
       <View style={styles.container}>
         <MapView style={styles.map} 
+          provider='google'
+          googleMapsApiKey={process.env.EXPO_PUBLIC_MAPS_API_KEY}
           initialRegion={{
             latitude: 37.78825,
             longitude: -122.4324,
