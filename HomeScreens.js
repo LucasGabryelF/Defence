@@ -4,6 +4,8 @@ import MapView from "./map";
 import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 
+import Car from './components/Car';
+
 import mapaImage from './assets/mapa.png';
 import carImage from './assets/carro.png';
 
@@ -25,20 +27,19 @@ export default function HomeScreen({ navigation }) {
       </View>
 
       <View style={styles.container}>
-        <MapView style={styles.map} 
+        <MapView style={styles.map}
           provider='google'
           googleMapsApiKey={process.env.EXPO_PUBLIC_MAPS_API_KEY}
           initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitude: -15.793735,
+            longitude: -47.882293,
           }}
+
         />
       </View>
 
-      {/* <View style={styles.infoRow}>
-        <View style={styles.infoContainer}>
+      <View style={styles.infoRow}>
+        {/* <View style={styles.infoContainer}>
           <LinearGradient
             colors={['rgba(0, 255, 0, 0.5)', 'transparent']}
             start={{ x: 0, y: 0 }}
@@ -51,7 +52,9 @@ export default function HomeScreen({ navigation }) {
             <Text style={styles.entryTime}>Entrada às 13:30</Text>
           </View>
           <Text style={styles.carPlate}>BTJ8724</Text>
-        </View>
+        </View> */}
+
+        <Car item={{ color: "green", city: "Vargem Grande do Sul", emission: "13:08:22", plate: "BTJ8724" }}> </Car>
 
         <View style={styles.infoContainer}>
           <LinearGradient
@@ -82,7 +85,7 @@ export default function HomeScreen({ navigation }) {
           </View>
           <Text style={styles.carPlate}>FJ09923</Text>
         </View>
-      </View> */}
+      </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -120,13 +123,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: '#fff',
-  },
-  mapImage: {
-    width: '96%',
-    height: 390,
-    resizeMode: 'cover',
-    marginHorizontal: '2%',
-    marginTop: 20, // Adicionado espaçamento superior
   },
   infoRow: {
     flexDirection: 'row',
