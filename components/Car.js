@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { StyleSheet, Text, View, Image } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 
 import carImage from '../assets/Icons/car_green.svg';
 
 const Car = ({ item }) => {
     return (
-        <View style={styles.infoContainer}>
+        <View style={styles.container}>
             <LinearGradient
                 colors={[item.color, 'transparent']}
                 start={{ x: 0, y: 0 }}
@@ -13,24 +15,27 @@ const Car = ({ item }) => {
                 style={styles.gradientBackground}
             />
             <Image source={carImage} style={styles.carImage} />
-            <View style={styles.infoTextContainer}>
-                <Text style={styles.cityName}>{item.city}</Text>
-                <Text style={styles.entryTime}>{item.emission}</Text>
+            <View style={styles.infoContainer}>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <MaterialCommunityIcons name="select-multiple-marker" size={20} color="#fff" />
+                    <Text style={styles.fenceNameText}> {item.fenceName} </Text>
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <MaterialIcons name="watch-later" size={20} color="#aaa" />
+                    <Text style={styles.emissionText}> {item.emission}</Text>
+                </View>
+                {/* <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <MaterialIcons name="warning-amber" size={24} color="#c70c0c" />
+                    <Text style={styles.emissionText}> {item.alert}</Text>
+                </View> */}
             </View>
-            <Text style={styles.carPlate}>{item.plate}</Text>
+            <Text style={styles.carPlateText}>{item.plate}</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    carImage: {
-        width: 80,
-        height: 80,
-        resizeMode: 'contain',
-        marginRight: 10,
-        marginBottom: 10,
-    },
-    infoContainer: {
+    container: {
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 8,
@@ -38,6 +43,16 @@ const styles = StyleSheet.create({
         width: '30%',
         backgroundColor: '#333',
         position: 'relative',
+    },
+    infoContainer: {
+        flex: 1,
+    },
+    carImage: {
+        width: 80,
+        height: 80,
+        resizeMode: 'contain',
+        marginRight: 10,
+        marginBottom: 10,
     },
     gradientBackground: {
         position: 'absolute',
@@ -47,16 +62,19 @@ const styles = StyleSheet.create({
         width: '20%',
         borderRadius: 8,
     },
-    cityName: {
+    fenceNameText: {
         color: '#fff',
         fontSize: 20,
-        fontWeight: 'bold',
     },
-    entryTime: {
+    emissionText: {
         color: '#aaa',
         fontSize: 17,
     },
-    carPlate: {
+    alertText: {
+        color: '#c70c0c',
+        fontSize: 17,
+    },
+    carPlateText: {
         color: '#fff',
         fontSize: 16,
         position: 'absolute',
