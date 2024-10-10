@@ -1,38 +1,44 @@
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { StyleSheet, Text, View, Image } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { memo } from "react";
 
-import carImage from '../assets/Icons/car_green.svg';
+type CarProps = {
+    color: string,
+    plate: string
+    fenceName: string,
+    emission: string,
+}
 
-const Car = ({ item }) => {
+const Car: React.FC<CarProps> = memo((props: CarProps) => {
     return (
         <View style={styles.container}>
             <LinearGradient
-                colors={[item.color, 'transparent']}
+                colors={[props.color, 'transparent']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={styles.gradientBackground}
             />
-            <Image source={carImage} style={styles.carImage} />
+            <Image source={require("../assets/icons/car_green.svg")} style={styles.carImage} />
             <View style={styles.infoContainer}>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
                     <MaterialCommunityIcons name="select-multiple-marker" size={20} color="#fff" />
-                    <Text style={styles.fenceNameText}> {item.fenceName} </Text>
+                    <Text style={styles.fenceNameText}> {props.fenceName} </Text>
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
                     <MaterialIcons name="watch-later" size={20} color="#aaa" />
-                    <Text style={styles.emissionText}> {item.emission}</Text>
+                    <Text style={styles.emissionText}> {props.emission}</Text>
                 </View>
                 {/* <View style={{ flex: 1, flexDirection: 'row' }}>
                     <MaterialIcons name="warning-amber" size={24} color="#c70c0c" />
-                    <Text style={styles.emissionText}> {item.alert}</Text>
+                    <Text style={styles.emissionText}> {props.alert}</Text>
                 </View> */}
             </View>
-            <Text style={styles.carPlateText}>{item.plate}</Text>
+            <Text style={styles.carPlateText}>{props.plate}</Text>
         </View>
     )
-}
+});
 
 const styles = StyleSheet.create({
     container: {
