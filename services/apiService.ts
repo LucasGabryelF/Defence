@@ -19,18 +19,18 @@ export async function request(endpoint: string, parameters: RequestInit | null =
     return request;
 }
 
-async function updateToken(auth) {
+async function updateToken(auth: AuthStateType) {
 
     if (!auth)
         return auth;
 
-    if (auth.DataExpiracao && new Date(auth.ExpirationDate) > new Date())
+    if (auth.DataExpiracao && new Date(auth.DataExpiracao) > new Date())
         return auth;
 
     console.log("ApiService->Atualizando Token")
     const request = await fetch(API_URL + "/Auth/refreshLogin", {
         body: JSON.stringify({
-            email: auth.User?.email,
+            email: auth.Usuario?.email,
             password: "",
             refreshToken: auth.RefreshToken
         }),

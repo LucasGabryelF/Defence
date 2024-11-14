@@ -1,5 +1,5 @@
 import { useAuth } from '@/hooks/useAuth';
-import { Redirect } from 'expo-router';
+import { Redirect, router } from 'expo-router';
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
 
 export default function Header() {
@@ -10,26 +10,27 @@ export default function Header() {
       <Text style={styles.headerLeft}>Olá, {auth.Usuario?.username}!</Text>
       <View style={styles.headerRight}>
 
-        <TouchableOpacity style={styles.button} /*onPress={() => navigation.navigate('Login')}*/>
-          <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity style={styles.button} onPress={() => router.push('/home')}>
+          <Text style={styles.buttonText}>Home</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} /*onPress={() => navigation.navigate('TelaContatos')}*/>
+        <TouchableOpacity style={styles.button} onPress={() => router.push('/contacts')}>
           <Text style={styles.buttonText}>Contatos</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} /*onPress={() => navigation.navigate('TelaCercas')}*/>
+        <TouchableOpacity style={styles.button} onPress={() => router.push('/fences')}>
           <Text style={styles.buttonText}>Cercas</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonDanger} onPress={() => {
-          auth.logout();
-          <Redirect href={"/(auth)/sign-in"}/>
-        }} >
+        <TouchableOpacity style={styles.button} onPress={() => router.push('/reports')}>
+          <Text style={styles.buttonText}>Relatório</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.buttonDanger} onPress={() => auth.logout()}>
           <Text style={styles.buttonTextDanger}>Sair</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </View >
   )
 }
 

@@ -1,39 +1,41 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ViewStyle, StyleProp } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { memo } from "react";
+import TextSituation from "./TextSituation";
+import { Address, Situation } from "@/models/position";
+import TextEmission from "./TextEmission";
+import TextAddress from "./TextAddress";
 
 type CarProps = {
+    id: number,
     color: string,
     plate: string
-    fenceName: string,
-    emission: string,
+    situation: Situation,
+    address: Address
+    emission: Date,
+    style: StyleProp<ViewStyle>
 }
 
 const Car: React.FC<CarProps> = memo((props: CarProps) => {
     return (
-        <View style={styles.container}>
+        <View style={{...props.style,...styles.container}}>
             <LinearGradient
                 colors={[props.color, 'transparent']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
                 style={styles.gradientBackground}
             />
-            <Image source={require("../assets/icons/car_green.svg")} style={styles.carImage} />
+            <Image source={{ uri: "https://api.xpsystems.com.br/Image/VehicleIcon/" + props.id }} style={styles.carImage} />
             <View style={styles.infoContainer}>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <MaterialCommunityIcons name="select-multiple-marker" size={20} color="#fff" />
-                    <Text style={styles.fenceNameText}> {props.fenceName} </Text>
+                    <TextSituation situation={props.situation.id} description={props.situation.description} margin={3}/>
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <MaterialIcons name="watch-later" size={20} color="#aaa" />
-                    <Text style={styles.emissionText}> {props.emission}</Text>
+                    <TextEmission emission={props.emission} margin={3} />
                 </View>
-                {/* <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <MaterialIcons name="warning-amber" size={24} color="#c70c0c" />
-                    <Text style={styles.emissionText}> {props.alert}</Text>
-                </View> */}
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <TextAddress address={props.address} margin={3} />
+                </View>
             </View>
             <Text style={styles.carPlateText}>{props.plate}</Text>
         </View>
@@ -42,13 +44,14 @@ const Car: React.FC<CarProps> = memo((props: CarProps) => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 8,
         padding: 10,
-        width: '30%',
         backgroundColor: '#333',
         position: 'relative',
+        overflow: 'hidden'
     },
     infoContainer: {
         flex: 1,

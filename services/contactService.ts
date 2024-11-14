@@ -1,6 +1,7 @@
+import { Contact } from "@/models/contact";
 import * as APIService from "./apiService";
 
-export async function create(contact: any) {
+export async function create(contact: Contact) {
     const result = await APIService.request("/Contact", {
         method: "POST",
         body: JSON.stringify(contact),
@@ -12,7 +13,7 @@ export async function create(contact: any) {
     }
 }
 
-export async function update(contact: any) {
+export async function update(contact: Contact) {
     console.log(contact)
     const result = await APIService.request("/Contact", {
         method: "PUT",

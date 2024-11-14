@@ -1,9 +1,19 @@
+import { View } from 'react-native';
 import { Redirect, Slot } from 'expo-router';
-import { useAuth } from '../../hooks/useAuth';
 
-export default function SignIn() {
+import { useAuth } from '@/hooks/useAuth';
+import Header from '@/components/Header';
+
+export default function AppLayout() {
     const auth = useAuth();
 
-    if (!auth.isLogado()) return <Slot />
-    else return <Redirect href="/(app)/home" />
+    if (!auth.isLogado()) {
+        return <Redirect href="/(login)/sign-in" />;
+    } else {
+        return (
+            <View style={{ flex: 1 }}>
+                <Header />
+                <Slot />
+            </View>);
+    }
 }

@@ -6,7 +6,6 @@ export default function RootLayout() {
   const auth = useAuth();
   return (
     <AuthContextProvider>
-      {!auth.isLogado && (<Redirect href="/(auth)/sign-in"/>)}
       <Slot />
     </AuthContextProvider>
   );

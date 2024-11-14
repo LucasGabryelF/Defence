@@ -1,4 +1,7 @@
+import { PositionEletronicFence } from "@/models/positionEletronicFence";
 import * as APIService from "./apiService"
+import { PageRequest } from "./pageRequest";
+import { PageResponse } from "./pageResponse";
 
 export async function create(eletronicFence: any) {
     const r = await APIService.request("/EletronicFence", {
@@ -61,4 +64,19 @@ export async function getById(id) {
     }
 
     return await result.json()
+}
+
+export async function PositionsOfVehicleByPeriod(eletronicFenceId: number, vehicleId: number, periodStart: Date, periodEnd: Date, page: PageRequest): Promise<PageResponse<PositionEletronicFence> | PositionEletronicFence[]> {
+
+    try {
+        const r = await APIService.request(`/EletronicFence/Positions/ByPeriod/${eletronicFenceId}/${vehicleId}?PeriodStart=${periodStart.toISOString()}&PeriodEnd=${periodEnd.toISOString()}&ItemsPerPage=${page.itemsPerPage}&Page=${page.page}`)
+
+        if (!r.ok) {
+            throw new Error(await r.text() + " " + r.status);
+        }
+        return await r.json()
+    } catch (e) {
+        console.log(e)
+        throw e;
+    }
 }
