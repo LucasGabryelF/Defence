@@ -158,10 +158,10 @@ const ReportScreen: React.FC = () => {
                 return;
 
             setPositions(_request);
-            setSpinnerVisible(false);
 
         } finally {
             isLoading.current = false;
+            setSpinnerVisible(false);
         }
     }
 
@@ -258,7 +258,7 @@ const ReportScreen: React.FC = () => {
                                 style={{ flex: 1, marginTop: 15 }}
                                 data={positions}
                                 renderItem={({ item }) => (<PositionEFItem positionEF={item} style={{}} />)}
-                                ListEmptyComponent={() => (<View style={styles.title}>{!spinnerVisible ? "Sem dados!": ""}</View>)}
+                                ListEmptyComponent={() => (<Text style={styles.title}>{!spinnerVisible ? "Sem dados!": ""}</Text>)}
                                 ItemSeparatorComponent={() => (<View style={{ height: 10 }}></View>)}
                             />
                         </ScrollView>
