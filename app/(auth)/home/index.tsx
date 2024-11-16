@@ -16,7 +16,7 @@ import * as EletronicFenceService from "@/services/eletronicFenceService"
 import { useAuth } from '@/hooks/useAuth';
 
 import Spinner from '@/components/Spinner';
-import Car from '@/components/Car';
+import PositionItem from '@/components/PositionItem';
 
 import { Colors } from '@/globals/colors';
 import colorUtils from '@/utils/colorUtils';
@@ -170,7 +170,7 @@ export default function HomeScreen() {
                         ListEmptyComponent={() => <View></View>}
                         renderItem={({ item }) => (
                             <View style={{ flex: 1 / 3}}>
-                                <Car style={{ marginHorizontal: 5, marginVertical: 5 }} id={item.vehicle.id} color={item.vehicle.color} situation={item.situation} emission={item.emission} address={item.address} plate={item.vehicle.plate} />
+                                <PositionItem style={{ marginHorizontal: 5, marginVertical: 5 }} id={item.vehicle.id} color={item.vehicle.color} situation={item.situation} emission={item.emission} address={item.address} plate={item.vehicle.plate} />
                             </View>
                         )}>
                     </FlatList>
