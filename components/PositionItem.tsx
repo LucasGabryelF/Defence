@@ -6,7 +6,7 @@ import { Address, Situation } from "@/models/position";
 import TextEmission from "./TextEmission";
 import TextAddress from "./TextAddress";
 
-type CarProps = {
+type PositionItemProps = {
     id: number,
     color: string,
     plate: string
@@ -16,7 +16,7 @@ type CarProps = {
     style: StyleProp<ViewStyle>
 }
 
-const Car: React.FC<CarProps> = memo((props: CarProps) => {
+const PositionItem: React.FC<PositionItemProps> = memo((props: PositionItemProps) => {
     return (
         <View style={{...props.style,...styles.container}}>
             <LinearGradient
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Car;
+export default PositionItem;

@@ -23,7 +23,7 @@ const TextSituation: React.FC<TextSituationProps> = memo((props: TextSituationPr
         return <View style={{
             flexDirection: "row", columnGap: props.margin ?? 10, alignItems: "center"
         }}>
-            <MaterialCommunityIcons name="arrow-up-circle" size={20} color="1861B8" />
+            <MaterialCommunityIcons name="arrow-up-circle" size={20} color="#1861B8" />
             <Text style={{
                 fontSize: 20,
                 color: Colors.text.detail,

@@ -134,4 +134,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: Colors.success
     },
+    labelRow: {
+        flexDirection: 'row',
+        gap: 5,
+        marginTop: 5
+    },
+    labelText: {
+        color: Colors.text.primary,
+        fontSize: 16
+    }
 })

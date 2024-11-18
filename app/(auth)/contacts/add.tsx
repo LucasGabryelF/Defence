@@ -88,7 +88,7 @@ export default function Add() {
     }
 
     async function onPressCancel(event: GestureResponderEvent): Promise<void> {
-        router.push("/fences")
+        router.push("/contacts")
     }
 
     return (

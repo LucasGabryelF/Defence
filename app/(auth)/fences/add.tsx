@@ -44,7 +44,6 @@ export default function FencesScreen() {
 
     useEffect(() => {
         loadScreen();
-
     }, []);
 
     async function loadScreen() {

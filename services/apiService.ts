@@ -61,6 +61,6 @@ async function getUser() {
     if (!userJson)
         return null;
 
-    const user = JSON.parse(userJson);
+    const user = JSON.parse(userJson) as AuthStateType;
     return updateToken(user);
 }

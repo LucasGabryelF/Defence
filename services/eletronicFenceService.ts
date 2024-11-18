@@ -2,6 +2,7 @@ import { PositionEletronicFence } from "@/models/positionEletronicFence";
 import * as APIService from "./apiService"
 import { PageRequest } from "./pageRequest";
 import { PageResponse } from "./pageResponse";
+import { EletronicFence } from "@/models/eletronicFence";
 
 export async function create(eletronicFence: any) {
     const r = await APIService.request("/EletronicFence", {
@@ -40,7 +41,7 @@ export async function remove(id) {
 
 
 
-export async function getAll() {
+export async function getAll() : Promise<EletronicFence[]> {
     const result = await APIService.request("/EletronicFence", {
         method: "GET",
         headers: { 'Content-Type': "application/json" }
